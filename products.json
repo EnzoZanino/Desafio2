@@ -1,0 +1,29 @@
+[
+	{
+		"title": "Auriculares Noga",
+		"description": "Auriculares inalamrbicos de calidad",
+		"price": 160,
+		"thumbnail": "https://www.sevenelectronics.com.ar/images/000779813771393377614600-750-NG-BT-469-RJ.jpg",
+		"code": "zxy987",
+		"stock": 77,
+		"id": 2
+	},
+	{
+		"title": "Microfono Blue Yeti",
+		"description": "Microfono con gran calidad de captura y transmision de sonido",
+		"price": 240,
+		"thumbnail": "https://http2.mlstatic.com/D_NQ_NP_993032-MLA51056198917_082022-O.webp",
+		"code": "gbe330",
+		"stock": 25,
+		"id": 3
+	},
+	{
+		"title": "Arroz Gallo",
+		"description": "Arroz Largo y Fino",
+		"price": 54,
+		"thumbnail": "❌ Sin Imagen ❌",
+		"code": "abc123",
+		"stock": 13,
+		"id": 4
+	}
+]
