@@ -1,14 +1,5 @@
 [
 	{
-		"title": "Auriculares Noga",
-		"description": "Auriculares inalamrbicos de calidad",
-		"price": 160,
-		"thumbnail": "https://www.sevenelectronics.com.ar/images/000779813771393377614600-750-NG-BT-469-RJ.jpg",
-		"code": "zxy987",
-		"stock": 77,
-		"id": 2
-	},
-	{
 		"title": "Microfono Blue Yeti",
 		"description": "Microfono con gran calidad de captura y transmision de sonido",
 		"price": 240,
@@ -25,5 +16,14 @@
 		"code": "abc123",
 		"stock": 13,
 		"id": 4
+	},
+	{
+		"title": "Auriculares Noga",
+		"description": "Auriculares inalamrbicos de calidad",
+		"price": 50,
+		"thumbnail": "https://www.sevenelectronics.com.ar/images/000779813771393377614600-750-NG-BT-469-RJ.jpg",
+		"code": "zxy987",
+		"stock": 11,
+		"id": 2
 	}
 ]

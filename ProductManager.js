@@ -66,41 +66,27 @@ class ProductManager {
     }
   }
 
-  async updateProduct(id, prop, nuevoValor) {
-    const productSelected = this.products.find((p) => p.id == id);
-
-    if (productSelected) {
-      const indice = this.products.findIndex(prod => prod.id === productSelected.id);
-      
-      switch (prop) {
-        case "title":
-          this.products[indice].title = nuevoValor
-          break;
-        case "description":
-          this.products[indice].description = nuevoValor
-          break;
-        case "price":
-          this.products[indice].price = nuevoValor
-          break;
-        case "thumbnail":
-          this.products[indice].thumbnail = nuevoValor
-        break;
-        case "code":
-          this.products[indice].code = nuevoValor
-          break;
-        case "stock":
-          this.products[indice].stock = nuevoValor
-          break;
-        default:
-          console.log(`error al buscar ${prop}`)
-          break;
+  async updateProduct(id , propsMod) {
+    let productAModificar = this.products.find((p) => p.id == id);
+    console.log(productAModificar)
+    
+    if (productAModificar !== undefined) {
+      if(!propsMod.id) {
+        console.log("no existe id")
+      } else {
+        console.log(`No se puede modificar el id --> "id": ${propsMod.id} se borrara esta prop para mantener la que tiene`)
+        delete propsMod.id
       }
-      // const newProductsArray = this.products.filter((p) => p.id != id);
-      // this.products = newProductsArray;
+      
+      const newProductsArray = this.products.filter((p) => p.id != id);
+      this.products = newProductsArray;
+      
+      let prodFinal = {...productAModificar, ...propsMod}
+      
+      this.products.push(prodFinal)
       await this.saveProduct();
-
     } else {
-      console.log("[ERROR en Update]");
+      console.log("[ERROR delete en updateProduct]");
     }
   }
 }
@@ -111,7 +97,7 @@ class Product {
   }
 }
 
-// 🔨🔧 PRUEBAS DE FUNCIONAMIENTO 🔧🔨 // 🔨🔧 PRUEBAS DE FUNCIONAMIENTO 🔧🔨 // 🔨🔧 PRUEBAS DE FUNCIONAMIENTO 🔧🔨 //
+//  🔨🔧 PRUEBAS DE FUNCIONAMIENTO 🔧🔨 // 🔨🔧 PRUEBAS DE FUNCIONAMIENTO 🔧🔨 // 🔨🔧 PRUEBAS DE FUNCIONAMIENTO 🔧🔨 //
 
 async function pruebaFuncionamiento() {
   const manager = new ProductManager("./products.json");
@@ -126,17 +112,15 @@ async function pruebaFuncionamiento() {
 
   manager.getProducts();
 
-  await manager.updateProduct(2, "stock", 77)
-  // ! al producto con "id": 2 ↑    ↑      ↑
-  // ? le busco actualizar la prop: ↑      ↑
-  // * le cambio su stock actualizado a 77 ↑
-
   await manager.getProductById(3)
+  await manager.updateProduct(2, {price: 50, stock: 11, id: 7})
 }
 
 pruebaFuncionamiento();
 
-// 🔨🔧 PRUEBAS DE FUNCIONAMIENTO 🔧🔨 // 🔨🔧 PRUEBAS DE FUNCIONAMIENTO 🔧🔨 // 🔨🔧 PRUEBAS DE FUNCIONAMIENTO 🔧🔨 //
+//  🔨🔧 PRUEBAS DE FUNCIONAMIENTO 🔧🔨 // 🔨🔧 PRUEBAS DE FUNCIONAMIENTO 🔧🔨 // 🔨🔧 PRUEBAS DE FUNCIONAMIENTO 🔧🔨 //
+
+
 
 /* 
   TODO: ¡APUNTES EXTRAS SOBRE EL DESAFIO! TODO: ¡APUNTES EXTRAS SOBRE EL DESAFIO!
@@ -155,9 +139,58 @@ getProductById(id) {
   console.log(prodPorId)
   return prodPorId
 } 
+
 *-----------------------------------------------------------------*
 
 * +++ NO ENTENDI CONSIGNA DEL updateProduct() QUE HABLA DE (Puede ser el objeto completo asi como en una DB)
 
   TODO: ¡APUNTES EXTRAS SOBRE EL DESAFIO! TODO: ¡APUNTES EXTRAS SOBRE EL DESAFIO! 
 */
+
+// !update para solo una prop en especifico
+
+/* await manager.updateProduct(2, "stock", 77)
+// ! al producto con "id": 2 ↑    ↑      ↑
+// ? le busco actualizar la prop: ↑      ↑
+// * le cambio su stock actualizado a 77 ↑ */
+
+/* async updateProduct(id, prop, nuevoValor) {
+
+  const productSelected = this.products.find((p) => p.id == id);
+
+  if (productSelected) {
+    const indice = this.products.findIndex(prod => prod.id === productSelected.id);
+    
+    switch (prop) {
+      case "title":
+        this.products[indice].title = nuevoValor
+        break;
+      case "description":
+        this.products[indice].description = nuevoValor
+        break;
+      case "price":
+        this.products[indice].price = nuevoValor
+        break;
+      case "thumbnail":
+        this.products[indice].thumbnail = nuevoValor
+      break;
+      case "code":
+        this.products[indice].code = nuevoValor
+        break;
+      case "stock":
+        this.products[indice].stock = nuevoValor
+        break;
+      default:
+        console.log(`error al buscar ${prop}`)
+        break;
+    }
+    // const newProductsArray = this.products.filter((p) => p.id != id);
+    // this.products = newProductsArray;
+    await this.saveProduct();
+
+  } else {
+    console.log("[ERROR en Update]");
+  }
+} */
+
+// !update para solo una prop en especifico
